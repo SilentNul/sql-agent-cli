@@ -1,0 +1,34 @@
+# 运行时产物（Playwright MCP 截图 / 页面快照 / 日志）
+.playwright-mcp/
+.screenshots/
+
+# 编译产物
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/agent
+/agent.exe
+
+# 测试 / 覆盖率
+*.test
+*.out
+
+# 环境变量 / 密钥
+.env
+.env.*
+*.local
+
+# 本地数据（跨会话记忆，可能含用户个人信息）
+agent_memory.json
+
+# IDE / 编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
