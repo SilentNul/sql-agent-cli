@@ -45,8 +45,8 @@ agent/
 |------|------|
 | Go 1.26+ | 编译运行 |
 | MySQL 5.7+ / 8.0+ | 被测数据库 |
-| Node.js（含 `npx`） | 运行 npx 类 MCP server（fetch / filesystem / playwright） |
-| Python 3.10+ | 运行 `time` MCP server（需 `pip install mcp-server-time`） |
+| Node.js（含 `npx`） | 运行 npx 类 MCP server（filesystem / playwright） |
+| Python 3.10+ | 运行 `fetch` 与 `time` MCP server（需 `pip install mcp-server-fetch mcp-server-time`） |
 | Google Chrome | `playwright` MCP server 自动启动浏览器时使用 |
 
 > 如果只用内置数据库工具，只需 Go + MySQL；MCP 相关依赖可按需安装。
@@ -122,7 +122,7 @@ Agent 会先调用 `get_table_schema` 了解表结构，必要时调用 `get_sam
 | 按键 | 作用 |
 |------|------|
 | `Enter` | 发送当前输入 |
-| `Ctrl+C` / `q` | 退出程序 |
+| `Ctrl+C` | 退出程序 |
 | 鼠标滚轮 | 上下滚动消息 |
 
 ### 上下文压缩
@@ -205,7 +205,7 @@ MCP 让 Agent 能调用外部工具。配置写在 [mcp.json](mcp.json)。
 /mcp help                            查看帮助
 ```
 
-修改 `mcp.json` 后，执行 `/mcp reload` 即可生效，无需重启。注意首次通过 `npx` 拉取某个 server 时会现场下载依赖，可能稍慢。
+修改 `mcp.json` 后，执行 `/mcp reload` 即可生效，无需重启。注意首次通过 `npx` 或 `pip` 拉取某个 server 时会现场下载依赖，可能稍慢。
 
 ## 内置工具
 
@@ -250,7 +250,7 @@ MCP 让 Agent 能调用外部工具。配置写在 [mcp.json](mcp.json)。
 通常是任务需要反复抓取网页（如查天气）导致链路过长或超时。建议改用能直接返回结构化数据的工具/接口，或适当调大 `MaxLoop` 与超时时间。
 
 **Q：MCP server 连接失败？**
-`npx` 类 server 首次需联网下载，确认 Node.js 已安装、网络可用；`time` server 需先 `pip install mcp-server-time`。
+`npx` 类 server 首次需联网下载，确认 Node.js 已安装、网络可用；`fetch` / `time` server 需先 `pip install mcp-server-fetch mcp-server-time`。
 
 **Q：playwright 启动的 Chrome 顶部有"不受支持的命令行标记"提示条？**
 这是 Chrome 对自动化启动参数（`--disable-blink-features=AutomationControlled`）的提醒，属正常现象，点关闭即可，不影响使用。

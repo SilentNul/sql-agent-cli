@@ -3,10 +3,10 @@
     {
       "name": "fetch",
       "transport": "stdio",
-      "command": "npx",
+      "command": "python",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-fetch"
+        "-m",
+        "mcp_server_fetch"
       ]
     },
     {
